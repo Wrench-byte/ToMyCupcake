@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4Cupcakes</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Contenedor de la carta */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(223, 114, 139, 0.2);
+            max-width: 550px;
+            width: 100%;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .heart-icon {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff4d6d;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Lluvia de corazones */
+        .heart-rain {
+            position: absolute;
+            top: -10%;
+            font-size: 20px;
+            color: #ff758f;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(115vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart-icon">❤️</div>
+        <p>Василиса, прости, что я так резко переключился на расписание тогда. Я просто очень хотел найти способ почаще быть на связи, но совсем не подумал о том, что тебе сначала нужно было услышать другое.</p>
+        
+        <p>Я правда не хочу, чтобы ты чувствовала, будто тебе нужно фильтровать свои слова из-за страха перед моей реакцией. Мне важно всё, что с тобой происходит: и когда тебе плохо, и когда у тебя всё супер. У меня нет намерения сравнивать мои проблемы с твоими или заставлять тебя чувствовать себя виноватой за то, что твоя жизнь кажется идеальной. Моё намерение сейчас — научиться спокойно слушать тебя, без осуждения, чтобы ты снова могла чувствовать себя комфортно, общаясь со мной.</p>
+        
+        <p>Мне больно, что в итоге мы пришли к фразе «нечего рассказывать», потому что мне действительно важна твоя жизнь. Если ты согласна, давай попробуем наладить это и поговорить в более спокойной обстановке.</p>
+    </div>
+
+    <script>
+        // Generador automático de lluvia de corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-rain');
+            
+            // Variedad de emojis de corazones
+            const hearts = ['❤️', '💖', '💕', '💗', '🌸'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // Posición horizontal e inclinación aleatoria
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Tamaño aleatorio para dar profundidad
+            const size = Math.random() * 20 + 10;
+            heart.style.fontSize = size + 'px';
+            
+            // Velocidad de caída aleatoria (entre 4 y 8 segundos)
+            const duration = Math.random() * 4 + 4;
+            heart.style.animationDuration = duration + 's';
+            
+            // Opacidad aleatoria para suavizar el fondo
+            heart.style.opacity = Math.random() * 0.6 + 0.3;
+            
+            document.body.appendChild(heart);
+            
+            // Eliminar el corazón del código una vez que termine de caer
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Crear un corazón cada 300 milisegundos
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
